@@ -1,0 +1,81 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  color: $headings-color;
+  font-weight: $headings-font-weight;
+  line-height: $headings-line-height;
+  margin-bottom: $headings-margin-bottom;
+  text-transform: uppercase;
+  min-height: 0.001vw;
+}
+
+h1,
+.h1 {
+  @include ms-respond(font-size, 40); // 60px
+}
+
+h2,
+.h2 {
+  @include ms-respond(font-size, 32); // 46px
+}
+
+h3,
+.h3 {
+  @include ms-respond(font-size, 28); // 40px
+}
+
+h4,
+.h4 {
+  @include ms-respond(font-size, 17); // 28px
+}
+
+h5,
+.h5 {
+  @include ms-respond(font-size, 15); // 26px
+}
+
+h6,
+.h6 {
+  @include ms-respond(font-size, 10); // 22px
+}
+
+.text-light {
+  font-weight: 300;
+}
+
+.text-small {
+  @include text-small();
+}
+
+.text-xsmall {
+  @include text-xsmall();
+}
+
+.text-no-uppercase {
+  text-transform: none;
+  line-height: 1.6;
+}
+
+.Lead {
+  @include ms-respond(font-size, 12);
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+.color-inverted {
+  --color-text: #{$color-text-inverted};
+  --color-text-inverted: #{$color-text};
+  --color-background: #{$color-background-black};
+  --color-background-inverted: #{$color-background};
+
+  color: $color-text-inverted;
+}

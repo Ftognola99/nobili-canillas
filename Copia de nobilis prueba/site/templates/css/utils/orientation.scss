@@ -1,0 +1,12 @@
+.d-portrait {
+    @media (orientation: "landscape") {
+      display: none !important;
+    }
+  }
+  
+  .d-landscape {
+    @media (orientation: "portrait") {
+      display: none !important;
+    }
+  }
+  

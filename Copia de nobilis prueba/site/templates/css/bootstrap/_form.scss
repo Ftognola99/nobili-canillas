@@ -1,0 +1,15 @@
+.form-control {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    font-weight: 300;
+  }
+  
+  .form-text {
+    font-family: $font-family-sans-serif;
+  }
+  
+  textarea.form-control {
+    resize: none;
+  }
+  

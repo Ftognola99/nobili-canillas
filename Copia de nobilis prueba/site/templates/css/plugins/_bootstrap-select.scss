@@ -1,0 +1,31 @@
+.bootstrap-select {
+    > .dropdown-toggle {
+      &:after {
+        margin-top: 0; // reset
+      }
+    }
+    &:not(.dropdown--flat) > .dropdown-toggle {
+      @extend .form-control;
+      display: flex;
+    }
+  
+    > select.mobile-device:focus + .dropdown-toggle,
+    .dropdown-toggle:focus {
+      outline: none !important;
+      &.focus-visible {
+        // @extend .focus-visible;
+      }
+    }
+  
+    .dropdown-menu.inner {
+      // transition: none;
+    }
+  
+    .dropdown-menu.inner.show {
+      // pointer-events: none;
+    }
+    .dropdown-menu.show .dropdown-menu.inner {
+      // pointer-events: auto !important;
+    }
+  }
+  

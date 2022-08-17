@@ -1,0 +1,33 @@
+.Map-colBody,
+.Map-colMap {
+  @include reveal();
+  @include media-breakpoint-up(sm) {
+    @include make-col(6);
+  }
+}
+
+.Map-colBody {
+  margin-left: auto;
+  margin-bottom: 2rem;
+  @include media-breakpoint-up(md) {
+    @include make-col(5);
+  }
+}
+
+.Map-wrapper {
+  background-color: $color-placeholder;
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 3/4 * 100%;
+  @include media-breakpoint-down(xs) {
+    padding-bottom: 100%;
+  }
+}
+
+.Map-area {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}

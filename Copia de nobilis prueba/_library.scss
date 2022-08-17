@@ -1,0 +1,245 @@
+/*
+  project mixins
+*/
+
+@mixin fluid-root-font-size() {
+    @include poly-fluid-sizing("font-size", join-map(map-remove($root-font-size, xs),  $grid-breakpoints));
+    @include media-breakpoint-down(xs) {
+      font-size: map_get($root-font-size, xs);
+    }
+  }
+  
+  @mixin text-small() {
+    font-size: calc(1rem - 2px);
+    line-height: 1.5;
+  }
+  
+  @mixin text-xsmall() {
+    font-size: calc(1rem - 4px);
+    line-height: 1.5;
+  }
+  
+  @mixin lazyloaded($transition: #{opacity 0.6s}) {
+    @if($transition != false) {
+      transition: $transition;
+    }
+    opacity: 0.001;
+    &.lazyloaded {
+      opacity: 1;
+    }
+  }
+  
+  @mixin content-spacer($property, $factor: 1) {
+    @each $prop_single in $property {
+      #{$prop_single}: 3rem * $factor;
+    }
+    @include res-prop($property, $grid-gutter-widths, (sm: $factor * 2));
+  }
+  
+  @mixin section-spacer($property, $factor: 1) {
+    @each $prop_single in $property {
+      #{$prop_single}: 4rem * $factor;
+    }
+    @include res-prop($property, $grid-gutter-widths, (sm: $factor * 3));
+  }
+  
+  @mixin section() {
+    @include section-spacer(("padding-top","padding-bottom"));
+    @include fix-sections-flickr();
+    // @include first-main-child();
+    // @if ($preventCollapse != true) {
+    //   @include resetIfAdjacentBg("padding-top");
+    // }
+  }
+  
+  @mixin fix-sections-flickr() {
+    // position: relative;
+    // &:before {
+    //   content: '';
+    //   position: absolute;
+    //   bottom: 0;
+    //   left: 0;
+    //   right: 0;
+    //   height: 2px;
+    //   background-color: inherit;
+    //   transform: translateY(1px);
+    // }
+    &:not(:first-child) {
+      margin-top: -1px;
+    }
+  }
+  
+  @mixin header-spacer($property: "padding-top", $important: false) {
+    @include res-prop($property, $site-header-heights, (xs: 2, sm: 3), $important);
+    .has-subnav & {
+      @include res-prop($property, $site-header-heights, (xs: 2, sm: 4), $important);
+    }
+  }
+  
+  @mixin transition-delay-nthchild($childs: 5, $delay: 0s, $stagger: 0.1s) {
+    @for $i from 1 through $childs {
+      &:nth-child(n+#{$i}) {
+        @include transition-delay($i, $delay, $stagger);
+      }
+    }
+  }
+  
+  @mixin transition-delay($n: 1, $delay: 0s, $stagger: 0.1s) {
+    $n-delay: $stagger * $n;
+    transition-delay: #{$delay + $n-delay} !important;
+  }
+  
+  
+  @mixin reveal-from($parent: '', $child: '') {
+    [data-scroll-container] #{$parent} & #{$child} {
+      @content;
+    }
+  }
+  
+  @mixin reveal-to($parent: '', $child: '', $className: '.is-inview') {
+    @if($parent != '') {
+      #{$parent}#{$className} & #{$child} {
+        @content;
+      }
+    } @else {
+      &#{$className} #{$child} {
+        @content;
+      }
+    }
+  }
+  
+  @mixin reveal($parent: '', $child: '', $className: '.is-inview') {
+    & #{$child} {
+      will-change: transform;
+    }
+    @include reveal-from($parent, $child) {
+      opacity: 0.001;
+      transform: translateY(2rem);
+      transition: transform 0.1s cubic-bezier("easeOutCubic") $reveal-duration-out, opacity $reveal-duration-out;
+    }
+    @include reveal-to($parent, $child, $className) {
+      opacity: 1;
+      transform: none;
+      transition: transform $reveal-duration-in cubic-bezier("easeOutCubic") $reveal-delay, opacity $reveal-duration-in $reveal-delay;
+    }
+  }
+  
+  @mixin reveal-delay($n: 1, $parent: '', $child: '', $className: '.is-inview') {
+    @include reveal-to($parent, $child, $className) {
+      $n-delay: $reveal-delay-stagger * $n;
+      transition-delay: #{$reveal-delay + $n-delay} !important;
+    }
+  }
+  
+  @mixin underlineLink($position: center 100%, $line-color: var(--color-text), $text-shadow: var(--color-background)) {
+    $thickness: 1px;
+    // @if($text-shadow) {
+    //   text-shadow: 0.06em 0.06em 0 $text-shadow,
+    //                0.06em -0.06em 0 $text-shadow,
+    //                -0.06em 0.06em 0 $text-shadow,
+    //                -0.06em -0.06em 0 $text-shadow;
+    // }
+    background-image: linear-gradient($line-color, $line-color);
+    background-position: $position;
+    background-repeat: no-repeat;
+    background-size: 0 $thickness;
+    transition: background-size 0.4s;
+    transition-timing-function: cubic-bezier("easeOutQuart");
+    html:not(.is-mobile) &:hover,
+    html:not(.is-mobile) a:hover & {
+      transition-duration: 0.6s;
+      background-size: 100% $thickness;
+    }
+  }
+  
+  @mixin label() {
+    color: $color-text;
+    font-size: 1rem;
+    font-weight: 400;
+    font-family: $font-family-sans-serif;
+  }
+  
+  @mixin label-heading() {
+    @include text-xsmall();
+    margin: 0;
+    font-family: $font-family-sans-serif;
+    text-transform: uppercase;
+    color: $color-text;
+    font-weight: 500;
+  }
+  
+  @mixin spotlight-hover($root: '', $child: '', $opacity: 0.4, $transition: opacity 0.4s) {
+    #{$root} #{$child} {
+      transition: $transition;
+      text-decoration: none !important;
+    }
+    #{$root}.--hover #{$child}:not(:hover) {
+      opacity: $opacity !important;
+    }
+  }
+  
+  /* overwrite bootstrap caret */
+  
+  @mixin caret-down() {
+  }
+  
+  @mixin caret-up() {
+    transform: rotate(180deg);
+  }
+  
+  @mixin caret-right() {
+    transform: rotate(90deg);
+  }
+  
+  @mixin caret-left() {
+    transform: rotate(-90deg);
+  }
+  
+  @mixin caret($direction: down) {
+    @if $enable-caret {
+      &::after {
+        flex-shrink: 0;
+        display: inline-block;
+        margin-left: $caret-spacing;
+        position: relative;
+        top: 0.1em;
+        // vertical-align: $caret-vertical-align;
+        content: "";
+        width: 14px;
+        height: 8px;
+        background: url(svg("chevron-down", "fill: none; stroke: #{$color-text}; stroke-width: 1.1"));
+        @if $direction == down {
+          // @include caret-down();
+        } @else if $direction == up {
+          @include caret-up();
+        } @else if $direction == right {
+          @include caret-right();
+        }
+      }
+  
+      @if $direction == left {
+        &::after {
+          display: none;
+        }
+  
+        &::before {
+          flex-shrink: 0;
+          display: inline-block;
+          margin-right: $caret-spacing;
+          // vertical-align: $caret-vertical-align;
+          content: "";
+          width: 14px;
+          height: 8px;
+          background: url(svg("chevron-down", "fill: none; stroke: #{$color-text}; stroke-width: 1.1"));
+          @include caret-left();
+        }
+      }
+  
+      &:empty::after {
+        margin-left: 0;
+      }
+    }
+  }
+  
+  
+  

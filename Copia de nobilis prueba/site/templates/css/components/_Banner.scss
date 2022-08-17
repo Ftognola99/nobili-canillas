@@ -1,0 +1,134 @@
+.Banner {
+    &:not(.--blackText) {
+      // I know. It's a pain.
+      @extend .color-inverted;
+    }
+    &.--full {
+      padding: 0;
+    }
+  }
+  
+  .Banner-outer {
+    .Banner:not(.--full) & {
+      @include make-container();
+    }
+  }
+  
+  .Banner-inner {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .Banner-container {
+    .Banner.--full & {
+      @include make-container();
+    }
+  }
+  
+  .Banner-media {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -2px;
+    right: -2px;
+    overflow: hidden;
+    &:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #000;
+      opacity: 0.25;
+    }
+  }
+  
+  .Banner-image,
+  .Banner-video {
+    @include lazyloaded();
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+  
+  .Banner-image {
+    background: center/cover no-repeat;
+  }
+  
+  .Banner-video {
+    video {
+      position: absolute;
+    }
+  }
+  
+  .Banner-content {
+    @include section-spacer(("padding-top", "padding-bottom"), 0.5);
+    text-align: center;
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    @include media-breakpoint-up(md) {
+      min-height: 70vh;
+    }
+    .Banner.--full & {
+      @include make-col(12);
+      @include media-breakpoint-up(sm) {
+        @include make-col(10);
+      }
+    }
+    .Banner:not(.--full) & {
+      @include make-col(10);
+    }
+    .Banner.--vAlignTop & {
+      justify-content: flex-start;
+    }
+    .Banner.--vAlignBottom & {
+      justify-content: flex-end;
+    }
+    .Banner.--hAlignLeft & {
+      text-align: left;
+      align-items: flex-start;
+    }
+    .Banner.--hAlignRight & {
+      text-align: right;
+      align-items: flex-end;
+    }
+    .HpSections.--hasSlides & {
+      height: 100vh;
+    }
+  }
+  
+  .Banner-contentWrapper {
+    max-width: 35rem;
+    @include reveal("", "> *");
+    @include reveal-to("", "> *") {
+      @include transition-delay-nthchild(3, 0.1s);
+    }
+    > *:last-child {
+      margin-bottom: 0;
+    }
+  }
+  
+  // .Banner-title,
+  // .Banner-subtitle,
+  // .Banner-cta {
+  // }
+  
+  // .Banner-subtitle {
+  //   @include reveal-to('[data-scroll]') {
+  //     @include transition-delay(1,0,0.3);
+  //   }
+  // }
+  
+  // .Banner-cta {
+  //   @include reveal-to('[data-scroll]') {
+  //     @include transition-delay(1,0,o.5);
+  //   }
+  // }
+  

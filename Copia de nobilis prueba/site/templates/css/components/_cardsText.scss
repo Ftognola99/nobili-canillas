@@ -1,0 +1,39 @@
+.CardsText-mainCol {
+    @include media-breakpoint-up(lg) {
+      @include make-col(10);
+      margin: auto;
+    }
+  }
+  
+  .CardsText-row {
+    @include res-prop("margin-top", $grid-gutter-widths, -2);
+  }
+  
+  .CardsText-col {
+    @include reveal();
+    @include res-prop("margin-top", $grid-gutter-widths, 2);
+    @include media-breakpoint-up(md) {
+      // if 2 items: col-6
+      @include quantity-exactly(2) {
+        @include make-col(6);
+      }
+      // if 3 items: col-4
+      @include quantity-exactly(3) {
+        @include make-col(4);
+      }
+      // if 4 items: col-6
+      @include quantity-exactly(4) {
+        @include make-col(6);
+      }
+      // if >= 5 items: even = col-6 odd = last col-12
+      @include quantity-at-least(5) {
+        @include make-col(4);
+      }
+    }
+  }
+  
+  .CardsText-title {
+    border-top: 2px solid currentColor;
+    padding-top: 0.75rem;
+  }
+  

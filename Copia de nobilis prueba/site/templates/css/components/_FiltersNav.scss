@@ -1,0 +1,65 @@
+.FiltersNav {
+    @include text-xsmall();
+    @include media-breakpoint-down(xs) {
+      margin: 0 #{map_get($grid-container-paddings, xs) * -1};
+    }
+  }
+  
+  .FiltersNav-wrapper {
+    display: flex;
+    justify-content: space-between;
+    @include media-breakpoint-down(xs) {
+      overflow: auto;
+    }
+  }
+  
+  .FiltersNav-list {
+    list-style-type: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    @include media-breakpoint-up(sm) {
+      flex-wrap: wrap;
+    }
+    @include media-breakpoint-down(xs) {
+      flex-shrink: 0;
+      padding: 0 #{map_get($grid-container-paddings, xs)} 0 1em;
+      order: 2;
+    }
+  }
+  
+  .FiltersNav-item {
+    display: block;
+    margin: 0 1em 1em 0;
+    flex-shrink: 0;
+    @include media-breakpoint-down(xs) {
+      margin-bottom: 1.5em;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+    a {
+      display: flex;
+      align-items: center;
+      background-color: $color-background-gray;
+      padding: 0.5em 1em;
+      border-radius: 10em;
+    }
+    .Icon {
+      width: 1em;
+      height: 1em;
+      font-size: 1em;
+      display: flex;
+      flex-shrink: 0;
+      margin-left: 0.5em;
+    }
+  }
+  
+  .FiltersNav-reset {
+    padding: 0.5em 0;
+    white-space: nowrap;
+    @include media-breakpoint-down(xs) {
+      margin-left: #{map_get($grid-container-paddings, xs)};
+    }
+  }
+  

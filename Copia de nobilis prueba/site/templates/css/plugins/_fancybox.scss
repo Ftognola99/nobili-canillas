@@ -1,0 +1,150 @@
+.fancybox-bg {
+    background: #000;
+    .fancybox-is-open & {
+      opacity: 1;
+    }
+  }
+  
+  .fancybox-toolbar {
+    @include res-prop("height", $site-header-heights);
+    @include res-prop("padding-right", $grid-container-paddings);
+    // background-color: #ccc;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: flex-end;
+  }
+  
+  .fancybox-slide--image {
+    @include res-prop("padding", $grid-container-paddings, 2);
+  }
+  
+  .fancybox-caption {
+    @include res-prop("padding", $grid-container-paddings);
+    padding-bottom: 1rem !important;
+    font-size: 1rem;
+  }
+  
+  .fancybox-button {
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    font-size: 0;
+    color: $color-text-inverted;
+    background-color: transparent;
+    .Icon {
+      $scale: 1.5;
+      width: 1rem * $scale;
+      height: 1rem * $scale;
+      stroke-width: $icon-stroke-width * 1 / $scale;
+    }
+  }
+  
+  .fancybox-button--close {
+    width: 1.5rem;
+    // @include res-prop("right", $grid-container-paddings, (xs: 0.5, sm: 1, md: 1));
+    //@include res-prop("top", $grid-container-paddings, 0.5);
+    // position: absolute;
+  }
+  
+  .fancybox-navigation {
+    .is-mobile {
+      display: none;
+    }
+  }
+  
+  .fancybox-navigation .fancybox-button {
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 0;
+    width: 4rem;
+    height: 4rem;
+  }
+  
+  .fancybox-navigation .fancybox-button--arrow_left {
+    @include res-prop("left", $grid-container-paddings);
+    transform: translate(-1rem, -50%);
+    svg {
+      transform: rotate(180deg);
+    }
+  }
+  
+  .fancybox-navigation .fancybox-button--arrow_right {
+    @include res-prop("right", $grid-container-paddings);
+    transform: translate(1rem, -50%);
+  }
+  
+  .fancybox-button[disabled] {
+    opacity: 0 !important;
+  }
+  
+  .fancybox-loading {
+    border: 2px solid #aaa;
+    border-bottom-color: #fff;
+    width: 2rem;
+    height: 2rem;
+    animation: 0.5s linear infinite fancybox-rotate;
+  }
+  
+  
+  .fancybox--overlay {
+    &:not(.fancybox-after-load) {
+      cursor: progress !important;
+    }
+    .fancybox-bg {
+      background: #fff;
+      .fancybox-is-open & {
+        opacity: 0.4;
+      }
+    }
+    .fancybox-slide {
+      padding: 0;
+      &:before {
+        content: none;
+      }
+    }
+    .fancybox-content {
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      position: absolute;
+      display: block;
+    }
+    .fancybox-button {
+      color: $color-text;
+    }
+  }
+  
+  .fancybox--dialog {
+  
+    &.fancybox-is-open .fancybox-bg {
+      opacity: 0.4;
+    }
+  
+    .fancybox-slide--html {
+      padding: 16px;
+  
+      .fancybox-close-small {
+        top: 1rem;
+        right: 1rem;
+  
+        padding: 0;
+      }
+    }
+  
+    .fancybox-content {
+      padding: 2rem;
+  
+      @include media-breakpoint-up(sm) {
+        width: 30rem;
+        padding: 3rem;
+      }
+  
+      > *:nth-last-child(2) { // last child is button data-fancybox-close
+        margin-bottom: 0;
+      }
+    }
+  }
+  

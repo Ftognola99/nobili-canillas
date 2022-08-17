@@ -1,0 +1,104 @@
+.p-FinishingItemList {
+    @include section-spacer("padding-top");
+    overflow: hidden;
+  }
+  
+  .p-FinishingItemList-slider {
+    .row {
+      justify-content: center;
+    }
+    .col {
+      @include make-col(12);
+      // @include media-breakpoint-up(sm) {
+      //   @include make-col(5);
+      // }
+      // @include media-breakpoint-up(md) {
+      //   @include make-col(5);
+      // }
+      // @include media-breakpoint-up(lg) {
+      //   @include make-col(4);
+      // }
+    }
+    .swiper-container {
+      max-width: 700px;
+      overflow: visible;
+    }
+    .swiper-slide {
+      transition: opacity 0.2s;
+    }
+    .swiper-slide:not(.swiper-slide-active) {
+      opacity: 0;
+    }
+  }
+  
+  .p-FinishingItemList-figure {
+    // padding-bottom: 100%;
+    position: relative;
+  }
+  
+  .p-FinishingItemList-image {
+    @include lazyloaded();
+    position: absolute;
+      top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: center/contain no-repeat;
+  }
+  
+  .p-FinishingItemList-placeholder {
+    width: 100%;
+  }
+  
+  .p-FinishingItemList-nav {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 1rem 0 0;
+    padding: 0;
+    list-style-type: none;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+    li {
+      margin: 0 0.7rem 0.7rem;
+      cursor: pointer;
+      @include media-breakpoint-down(xs) {
+        margin: 0 0.5rem 0.5rem;
+      }
+      &.break {
+        margin: 0;
+        height: 0;
+        flex-basis: 100%;
+        @include media-breakpoint-down(xs) {
+          display: none;
+        }
+      }
+    }
+  }
+  
+  .p-FinishingItemList-nav-label {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%, calc(200% - 0.7rem));
+    white-space: nowrap;
+    @include text-xsmall();
+    font-weight: 400;
+    pointer-events: none;
+    opacity: 0;
+    transition: none;
+    html:not(.is-mobile) li:hover & {
+      opacity: 0.9;
+      transition: opacity 0.3s;
+    }
+    html.is-mobile li.is-active & {
+      opacity: 0.9;
+    }
+  }
+  
+  .p-FinishingItemList-item {
+    &:not(:first-child) {
+      display: none;
+   }
+  }
+  

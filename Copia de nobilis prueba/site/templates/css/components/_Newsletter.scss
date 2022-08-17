@@ -1,0 +1,94 @@
+.Newsletter {
+    padding-top: 2px;
+  }
+  
+  .Newsletter-content {
+    @include content-spacer(("padding-top", "padding-bottom"));
+    border-top: 1px solid $color-lines;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  
+    > button {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+  
+  .Newsletter-formGroup {
+    display: flex;
+    margin: 2rem 0;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  
+  .Newsletter-modal {
+    display: none;
+  
+    button {
+      margin: auto;
+    }
+  
+    input::placeholder {
+      color: $color-text;
+    }
+  
+    input[type="email"],
+    select {
+      appearance: none;
+      font-size: 12px;
+      font-weight: 500;
+      width: 100%;
+      height: 40px;
+      text-transform: uppercase;
+      border: 0;
+      background-color: $color-background-gray;
+      line-height: 12px;
+      padding: 4px 12px;
+      background-clip: padding-box;
+      border-radius: 0;
+    }
+  
+    select {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: right 0.75rem center;
+      background-size: 16px 12px;
+    }
+  
+    .alert {
+      text-align: center;
+      display: none;
+    }
+  
+    .custom-control {
+      font-size: 12px;
+      line-height: 1.5;
+      min-height: 18px;
+      padding-left: 1.5em;
+      margin: 1rem auto 0;
+      opacity: 0.75;
+    }
+  
+    .custom-control-input {
+      height: 1em;
+      width: 1em;
+      top: 0.25em;
+    }
+  
+  
+    .custom-control-label {
+      a {
+        // text-decoration: underline;
+      }
+      &:before,
+      &:after {
+        left: -1.5em;
+        height: 1em;
+        width: 1em;
+        top: 0.25em;
+      }
+    }
+  }
+  

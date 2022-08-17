@@ -1,0 +1,17 @@
+.Catalogue-container {
+    @include reveal();
+    text-align: center;
+  }
+  
+  .Catalogue-figure {
+    background-color: $color-placeholder;
+    margin: auto;
+    max-width: 30rem;
+    height: auto;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.25);
+  }
+  
+  .Catalogue-image {
+    @include lazyloaded();
+  }
+  

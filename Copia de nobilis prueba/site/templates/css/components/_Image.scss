@@ -1,0 +1,36 @@
+.Image.--full.Section {
+    padding: 0;
+  }
+  
+  .Image-container {
+    .Image:not(.--full) & {
+      @include reveal();
+    }
+    .--full & {
+      padding: 0;
+    }
+  }
+  
+  .Image-figure {
+    font-size: 0;
+    position: relative;
+  }
+  
+  .Image-image {
+    @include lazyloaded();
+  }
+  
+  .Image-mask {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: $color-placeholder;
+    transition: opacity 0.6s;
+  
+    .lazyloaded ~ & {
+      opacity: 0;
+    }
+  }
+  

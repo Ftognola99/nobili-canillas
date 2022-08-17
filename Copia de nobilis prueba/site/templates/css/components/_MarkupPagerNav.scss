@@ -1,0 +1,115 @@
+.MarkupPagerNav {
+    @include section-spacer("margin-bottom");
+    @include text-small();
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0;
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    @include media-breakpoint-up(sm) {
+      justify-content: flex-end;
+    }
+  }
+  
+  .MarkupPagerNav li {
+    &:not(:last-child) {
+      margin-right: 4px;
+    }
+    &.MarkupPagerNavOn {
+      &:before {
+        background-color: $color-text;
+      }
+      &:after {
+        display: none;
+      }
+    }
+  }
+  
+  .MarkupPagerNavSeparator,
+  .MarkupPagerNav span {
+    padding: 1rem 0;
+    min-width: 3rem;
+    text-align: center;
+    display: block;
+    position: relative;
+    &:before,
+    &:after {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      height: 1px;
+    }
+    &:before {
+      background-color: $color-lines;
+    }
+    &:after {
+      background-color: $color-text;
+      transform: scaleX(0);
+      transform-origin: 0 0;
+      transition: transform 0.3s;
+      transition-timing-function: cubic-bezier("easeInOutQuart");
+    }
+  }
+  
+  .MarkupPagerNav a {
+    display: block;
+    text-decoration: none;
+    &:hover span:after {
+      transform: scaleX(1);
+    }
+  }
+  
+  .MarkupPagerNav .MarkupPagerNavOn span {
+    &:before {
+      background-color: $color-text;
+    }
+    &:after {
+      display: none;
+    }
+  }
+  
+  .MarkupPagerNavSeparator {
+    cursor: default;
+    color: $color-text-muted;
+  }
+  
+  .MarkupPagerNavNext,
+  .MarkupPagerNavPrevious {
+    span {
+      color: transparent;
+    }
+    a {
+      display: block;
+      position: relative;
+      &:after {
+        content: '';
+        position: absolute;
+        width: 1rem;
+        height: 1rem;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: url(svg("arrow", "fill: none; stroke: #{$color-text}; stroke-width: 1.2"));
+      }
+    }
+  }
+  
+  .MarkupPagerNavPrevious a:after {
+    transform: translate(-50%, -50%) rotate(180deg);
+  }
+  
+  @include media-breakpoint-down(xs) {
+    .MarkupPagerNav li {
+      display: none !important;
+      &.MarkupPagerNavPrevious,
+      &.MarkupPagerNavOn,
+      &.MarkupPagerNavNext {
+        display: block !important;
+      }
+    }
+  }
+  

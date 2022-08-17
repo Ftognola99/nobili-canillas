@@ -1,0 +1,44 @@
+.SearchResultsContents {
+    @include section-spacer(("margin-top","margin-bottom"), 0.5);
+  }
+  
+  .SearchResultsContents-col {
+    @include media-breakpoint-up(md) {
+      @include make-col(10);
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+  
+  .SearchResultsContents-item {
+    @include content-spacer(("margin-bottom"), 0.25);
+    @include content-spacer(("padding-bottom"), 0.25);
+    @include reveal();
+    &:not(:last-child) {
+      border-bottom: 1px solid $color-lines;
+    }
+  }
+  
+  .SearchResultsContents-link {
+    text-decoration: none !important;
+  }
+  
+  .SearchResultsContents-label {
+    @include text-xsmall();
+    font-weight: 400;
+    margin: 0;
+  }
+  
+  .SearchResultsContents-title {
+    margin-bottom: 0.25rem;
+    font-weight: 400;
+    span {
+      @include underlineLink(#{0% 100%});
+    }
+  }
+  
+  .SearchResultsContents-description {
+    @include text-small();
+    margin: 0;
+  }
+  

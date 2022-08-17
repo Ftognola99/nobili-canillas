@@ -1,0 +1,89 @@
+.TextImage {
+    &.--noSlide,
+    &.--vAlignCenter {
+      [data-scroll-slide] {
+        transform: none !important;
+      }
+    }
+    html:not(.is-mobile) .HpSections & {
+      min-height: 100vh;
+    }
+  }
+  
+  .TextImage-item {
+    align-items: flex-start;
+    justify-content: space-between;
+    &:not(:last-child) {
+      @include section-spacer("margin-bottom");
+    }
+    .TextImage.--vAlignCenter & {
+      align-items: center;
+    }
+  }
+  
+  .TextImage-media {
+    @include media-breakpoint-up(sm) {
+      @include make-col(6);
+      .--reverse .TextImage-item:nth-child(odd) & {
+        order: 2;
+      }
+      .TextImage:not(.--reverse) .TextImage-item:nth-child(even) & {
+        order: 2;
+      }
+    }
+  }
+  
+  .TextImage-figure {
+    @include reveal(".TextImage-media");
+    @include res-prop("margin-bottom", $grid-container-paddings);
+    position: relative;
+    overflow: hidden;
+    @include media-breakpoint-up(sm) {
+      margin-bottom: 0;
+    }
+    .TextImage-item.--ratio-1-1 & {
+      padding-bottom: 100%;
+    }
+    .TextImage-item.--ratio-3-4 & {
+      padding-bottom: 4/3 * 100%;
+    }
+  }
+  
+  .TextImage-placeholder {
+    .TextImage-item.--ratio-1-1 &,
+    .TextImage-item.--ratio-3-4 & {
+      display: none;
+    }
+  }
+  
+  .TextImage-image {
+    @include lazyloaded();
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: center/contain no-repeat;
+  }
+  
+  .TextImage-content {
+    @include make-col-ready();
+    @include make-col(12);
+    @include media-breakpoint-up(sm) {
+      @include make-col(5);
+      margin: 0 auto;
+    }
+    @include media-breakpoint-up(md) {
+      @include make-col(4);
+      margin: 0 auto;
+    }
+    html.is-mobile & {
+      align-self: center;
+    }
+  }
+  
+  .TextImage-body {
+    @include reveal(".TextImage-content");
+  }
+  
+  

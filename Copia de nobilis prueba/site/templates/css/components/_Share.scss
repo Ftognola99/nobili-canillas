@@ -1,0 +1,50 @@
+.Share {
+    // @include content-spacer("margin-bottom");
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+  }
+  
+  .Share-label {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+    font-weight: 500;
+    &:after {
+      content: '';
+      display: block;
+      width: 1.5em;
+      margin: 0 0.75em;
+      border-top: 1px solid currentColor;
+    }
+  }
+  
+  .Share-list {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+  }
+  
+  .Share-item {
+    &:not(:last-child) {
+      margin-right: 0.5rem;
+    }
+  }
+  
+  .Share-link {
+    cursor: pointer;
+    display: flex;
+    padding: 0.25rem;
+    &:hover {
+      text-decoration: underline !important;
+    }
+  }
+  
+  .Share-copyContent {
+    position: absolute;
+    left: -9999px;
+  }
+  

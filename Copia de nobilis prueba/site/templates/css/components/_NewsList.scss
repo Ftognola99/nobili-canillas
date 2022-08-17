@@ -1,0 +1,34 @@
+.NewsList {
+    @include content-spacer("margin-top", -1);
+    @include section-spacer("margin-bottom");
+  }
+  
+  .NewsList-mainCol {
+    @include media-breakpoint-up(sm) {
+      @include make-col(10);
+      margin: auto;
+    }
+  }
+  
+  .NewsList-col {
+    @include reveal();
+    @include content-spacer("margin-top");
+    @include media-breakpoint-up(sm) {
+      @include make-col(6);
+    }
+    @include media-breakpoint-only(sm) {
+      &:nth-child(even) {
+        @include reveal-delay();
+      }
+    }
+    @include media-breakpoint-up(lg) {
+      @include make-col(4);
+      &:nth-child(3n+2) {
+        @include reveal-delay(1);
+      }
+      &:nth-child(3n+3) {
+        @include reveal-delay(2);
+      }
+    }
+  }
+  

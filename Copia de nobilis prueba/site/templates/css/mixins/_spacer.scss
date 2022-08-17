@@ -1,0 +1,77 @@
+/* Core Utility to add margin and padding, used by the spacer mixins below */
+@mixin core-spacer($abbrev: "p", $sides: "", $size: 1rem, $important: false) {
+    @if ($sides == "x") {
+      @include core-spacer($abbrev, "r", $size, $important);
+      @include core-spacer($abbrev, "l", $size, $important);
+    } @else if ($sides == "y") {
+      @include core-spacer($abbrev, "t", $size, $important);
+      @include core-spacer($abbrev, "b", $size, $important);
+    } @else {
+      $prop:      "padding";
+      @if ($abbrev == "m") {
+        $prop: "margin";
+      }
+      $prop-sides: "";
+      @if ($sides == "t") {
+        $prop-sides:  "-top";
+      } @else if ($sides == "r") {
+        $prop-sides:  "-right";
+      } @else if ($sides == "b") {
+        $prop-sides:  "-bottom";
+      } @else if ($sides == "l") {
+        $prop-sides:  "-left";
+      }
+      $_important: "";
+      @if ($important) {
+        $_important: " !important";
+      }
+      #{$prop}#{$prop-sides}: $size#{$_important};
+    }
+  }
+  
+  /* Responsive spacer based on grid-gutter-width values or a given spacer map */
+  @mixin grid-spacer($abbrev: "p", $sides: "", $factor: 1, $spacers: $grid-gutter-widths, $important: false) {
+  
+    $breakpointSource: $spacers;
+  
+    @if type-of($factor) == 'map' {
+      $breakpointSource: $factor;
+    }
+  
+    @each $breakpoint in map-keys($breakpointSource) {
+      @include media-breakpoint-up($breakpoint) {
+        $mediaFactor : $factor;
+        @if type-of($factor) == 'map' {
+          $mediaFactor : map-get($factor, $breakpoint);
+        }
+        $size : map-get($spacers, $breakpoint) * $mediaFactor;
+        @include core-spacer($abbrev, $sides, $size, $important);
+      }
+    }
+  }
+  
+  /* Spacer mixins based on global $spacers, accept also negative values */
+  @mixin spacer($abbrev: "p", $sides: "", $size: 3, $important: false) {
+    $sign : 1;
+    @if $size < 0 {
+      $sign : -1;
+    }
+    $width : map-get($spacers, $size * $sign) * $sign;
+    @include core-spacer($abbrev, $sides, $width, $important);
+  }
+  
+  /* Spacer shortcut for margin bottom */
+  @mixin spacer-stack($size: 3, $important: false) {
+    @include spacer("m", "b", $size, $important);
+  }
+  
+  /* Spacer shortcut for padding */
+  @mixin spacer-inset($size: 3, $important: false) {
+    @include spacer("p", "", $size, $important);
+  }
+  
+  /* Spacer shortcut for margin-right */
+  @mixin spacer-inline($size: 3, $important: false) {
+    @include spacer("m", "r", $size, $important);
+  }
+  

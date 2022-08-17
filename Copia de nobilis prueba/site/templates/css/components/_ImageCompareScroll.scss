@@ -1,0 +1,54 @@
+.ImageCompareScroll {
+    // it's not a section so it needs some basic section styles
+    @include fix-sections-flickr();
+    background-color: var(--color-background);
+    .pin-spacer {
+      height: 200vh !important;
+      padding: 0 0 100vh !important;
+    }
+  }
+  
+  .ImageCompareScroll-wrapper {
+    height: 100vh !important;
+    max-height: 100vh !important;
+    top: 0 !important;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .ImageCompareScroll-item {
+    position: relative;
+    height: calc(100vh + 2px); // fix flicker
+    overflow: hidden;
+    &:nth-child(2) {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
+  }
+  
+  .ImageCompareScroll-item,
+  .ImageCompareScroll-figure {
+    will-change: transform;
+  }
+  
+  .ImageCompareScroll-figure,
+  .ImageCompareScroll-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+  
+  .ImageCompareScroll-image {
+    @include lazyloaded();
+    @include res-prop("top", $site-header-heights);
+    // top: 5%;
+    // bottom: 5%;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  

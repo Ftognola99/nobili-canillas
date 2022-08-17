@@ -1,0 +1,20 @@
+.Mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: $zindex-mask;
+    background-color: #fff;
+    pointer-events: none;
+    opacity: 1;
+    transition: opacity 0.2s;
+    will-change: opacity;
+    html.is-ready & {
+      opacity: 0;
+    }
+    html.page-transitioning & {
+      transition: none;
+    }
+  }
+  

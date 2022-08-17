@@ -1,0 +1,56 @@
+.Button {
+    @include text-xsmall();
+    align-items: center;
+    appearance: none;
+    border: 0;
+    display: inline-flex;
+    font-weight: 500;
+    height: rem(46px);
+    justify-content: center;
+    letter-spacing: 0.02em;
+    min-width: 10rem;
+    overflow: hidden;
+    padding: 0 0.75rem;
+    position: relative;
+    text-decoration: none !important;
+    text-transform: uppercase;
+    z-index: 2;
+    color: var(--color-text-inverted) !important;
+    background: var(--color-background-inverted);
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      transform: translateY(100%);
+      transition: transform 0.6s cubic-bezier("easeOutQuart");
+      background-color: currentColor;
+      opacity: 0.2;
+      .color-inverted & {
+        opacity: 0.15;
+      }
+    }
+    &:hover:before {
+      transform: translateY(0);
+    }
+  }
+  
+  .Button--arrow {
+    justify-content: space-between;
+    &:after {
+      content: '';
+      width: 1rem;
+      height: 1rem;
+      margin-left: 1rem;
+      background-color: transparent;
+      background-image: url(svg("arrow", "fill: none; stroke: #{$color-text-inverted}; stroke-width: #{$icon-stroke-width}"));
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+    }
+    .color-inverted &:after {
+      filter: invert(1);
+    }
+  }
+  

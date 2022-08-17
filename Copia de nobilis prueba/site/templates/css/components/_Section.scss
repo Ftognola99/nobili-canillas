@@ -1,0 +1,8 @@
+.Section {
+    @include section();
+  }
+  
+  .Section:not([class*="--full"]) + .Section.--adjacentBg {
+    padding-top: 0;
+  }
+  

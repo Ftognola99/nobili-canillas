@@ -1,0 +1,115 @@
+.p-CollectionList {
+    @include section-spacer("padding-bottom");
+  }
+  
+  .p-CollectionList:not(.--related) {
+    @include header-spacer();
+  }
+  
+  .p-CollectionList.--related {
+    @include section-spacer("padding-top");
+  }
+  
+  .p-CollectionList-heading {
+    @include text-small();
+    text-align: center;
+    @include content-spacer(("margin-bottom"));
+    .p-CollectionList:not(.--related) & {
+      @include media-breakpoint-up(sm) {
+        display: none;
+      }
+    }
+  }
+  
+  .p-CollectionList-mainCol {
+    @include content-spacer("margin-top", -1);
+    @include media-breakpoint-up(md) {
+      @include make-col(10);
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .p-CollectionList.--related & .row {
+      justify-content: center;
+    }
+  }
+  
+  .p-CollectionList-col {
+    @include content-spacer("margin-top", 1);
+    @include reveal();
+    will-change: transform;
+    @include media-breakpoint-up(sm) {
+      @include make-col(4);
+      &:nth-child(3n+2) {
+        @include reveal-delay(1);
+      }
+      &:nth-child(3n+3) {
+        @include reveal-delay(2);
+      }
+    }
+    @include media-breakpoint-up(xl) {
+      @include make-col(3);
+      &:nth-child(4n+2) {
+        @include reveal-delay(1);
+      }
+      &:nth-child(4n+3) {
+        @include reveal-delay(2);
+      }
+      &:nth-child(4n+4) {
+        @include reveal-delay(3);
+      }
+    }
+  }
+  
+  .p-CollectionList-link {
+    // @include spotlight-hover();
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  @include spotlight-hover("", ".p-CollectionList-link");
+  
+  .p-CollectionList-figure {
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%;
+    overflow: hidden;
+    margin-bottom: 1rem;
+  }
+  
+  .p-CollectionList-image {
+    @include lazyloaded();
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: bottom center;
+  }
+  
+  .p-CollectionList-title {
+    display: inline-block;
+    letter-spacing: $letter-spacing;
+    // span {
+    //   @include underlineLink();
+    // }
+  }
+  
+  .p-CollectionList-title,
+  .p-CollectionList-subtitle {
+    text-align: center;
+    margin: 0;
+  }
+  
+  .p-CollectionList-subtitle {
+    @include text-small();
+    margin-top: 0.25em;
+    opacity: 0.4;
+    font-weight: 400;
+    .p-CollectionList.--related & {
+      display: none;
+    }
+  }
+  

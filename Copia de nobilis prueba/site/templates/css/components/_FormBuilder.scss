@@ -1,0 +1,151 @@
+.FormBuilder {
+    // reset because .Prose is overwriting these values
+    font-family: $font-family-sans-serif;
+    font-family: $font-family-base;
+    line-height: $line-height-base;
+  
+    // custom style
+    button:not(.dropdown-toggle) {
+      @extend .Button;
+      @extend .Button--arrow;
+    }
+  
+    input[type="text"],
+    input[type="email"],
+    textarea,
+    select {
+      @extend .form-control;
+    }
+  
+    input[type="file"] {
+      opacity: 0;
+    }
+  
+    .InputfieldHidden {
+      display: none;
+    }
+  
+    .InputfieldStateError {
+      input[type="text"],
+      input[type="email"],
+      textarea,
+      select,
+      .dropdown-toggle {
+        $color: $color-error;
+        border-color: $color;
+        &:focus {
+          border-color: $color;
+          box-shadow: 0 0 0 $input-btn-focus-width rgba($color, .3);
+        }
+      }
+      .InputfieldContent label {
+        color: $color-error;
+      }
+    }
+  
+    input[type="file"] {
+      @extend .form-control-file;
+    }
+  
+    .input-error {
+      @extend .form-text;
+      @include text-small();
+      color: $color-error;
+    }
+  
+    .notes {
+      @include text-small();
+      @extend .form-text;
+      color: $color-text-muted;
+      margin-bottom: 0;
+    }
+  
+    .Inputfields {
+      display: flex;
+      flex-wrap: wrap;
+      @include grid-spacer("m", "x", -0.5);
+    }
+  
+    .Inputfield,
+    fieldset {
+      @extend .form-group;
+      @include grid-spacer("p", "x", 0.5);
+      @include make-col-ready();
+      @include media-breakpoint-down(xs) {
+        width: 100% !important;
+      }
+    }
+  
+    .InputfieldStateRequired {
+      label.InputfieldHeader,
+      label .pw-no-select {
+        &:after {
+          content: ' *';
+          @include label();
+          color: inherit;
+        }
+      }
+    }
+  
+    .InputfieldCheckbox {
+      .InputfieldHeader {
+        display: none;
+      }
+    }
+  
+    .InputfieldCheckbox,
+    .InputfieldCheckboxes,
+    .InputfieldRadios {
+      .InputfieldContent {
+        label {
+          @extend .form-check-label;
+          &:not(.custom-control-label) {
+            @extend .form-check;
+          }
+        }
+        input {
+          @extend .form-check-input;
+        }
+      }
+    }
+  
+    .InputfieldRadios {
+      .InputfieldContent {
+        input {
+          margin-top: .25em;
+        }
+      }
+    }
+  
+    .InputfieldCheckbox,
+    .InputfieldCheckboxes {
+      .InputfieldContent {
+        input {
+          margin-top: .3em;
+        }
+      }
+    }
+  
+    .Inputfield_file {
+      li + li {
+        margin-top: $form-group-margin-bottom;
+      }
+    }
+  
+    .InputfieldContent {
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+    }
+  
+  
+  
+    .InputfieldSubmit {
+      margin: $form-group-margin-bottom 0 $form-group-margin-bottom * 2;
+      display: flex;
+      justify-content: center;
+    }
+  }
+  

@@ -1,0 +1,63 @@
+:root {
+  --color-text: #{$color-text};
+  --color-text-inverted: #{$color-text-inverted};
+  --color-background: #{$color-background};
+  --color-background-inverted: #{$color-background-black};
+  --actual-vh: 1vh;
+  --initial-vh: 1vh;
+}
+
+::selection {
+  color: var(--color-background);
+  background: var(--color-text);
+}
+
+html {
+  @include font-smoothing();
+  // @include fluid-root-font-size();
+  @include res-prop("font-size", $root-font-size);
+  // -webkit-tap-highlight-color: rgba($color-text, 0.2);
+
+  &.page-transitioning {
+    * {
+      // pointer-events: none;
+      cursor: progress !important;
+    }
+  }
+}
+
+body.frontend {
+  overscroll-behavior-y: none; // prevent overscroll on body
+  html:not(.is-ready) & {
+    opacity: 0;
+  }
+}
+
+svg {
+  overflow: visible;
+}
+
+figure {
+  margin: 0;
+}
+
+img {
+  width: 100%;
+  max-width: 100%;
+}
+
+a[href^="tel:"] {
+  text-decoration: none !important;
+}
+
+label {
+  &:not(.custom-control-label) {
+    @include label-heading();
+  }
+  &.custom-file-label,
+  &.form-check-label,
+  .InputfieldRadiosStacked &,
+  .InputfieldCheckbox &:not(.InputfieldHeader) {
+    @include label();
+  }
+}

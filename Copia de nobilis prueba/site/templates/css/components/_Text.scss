@@ -1,0 +1,33 @@
+.Text-row {
+    justify-content: center;
+  }
+  
+  .Text-mainCol {
+    @include content-spacer("margin-top", -1);
+    @include media-breakpoint-up(sm) {
+      @include make-col(10);
+    }
+  }
+  
+  .Text-col {
+    @include reveal();
+    @include make-col-ready();
+    @include content-spacer("margin-top");
+    @include media-breakpoint-up(md) {
+      @include make-col(6, 10);
+    }
+    &.--colLg {
+      @include media-breakpoint-up(md) {
+        @include make-col(8, 10);
+      }
+    }
+    &.--colSm {
+      @include media-breakpoint-up(md) {
+        @include make-col(4, 10);
+      }
+    }
+    &.--colLeft {
+      margin-right: auto;
+    }
+  }
+  

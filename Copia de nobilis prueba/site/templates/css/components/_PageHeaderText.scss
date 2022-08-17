@@ -1,0 +1,22 @@
+.PageHeaderText {
+    @include header-spacer("padding-top", true);
+  }
+  
+  .PageHeaderText-title,
+  .PageHeaderText-subtitle {
+    @include reveal("[data-scroll]");
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  
+  .PageHeaderText-title {
+    margin-bottom: 0.25rem;
+  }
+  
+  .PageHeaderText-subtitle {
+    @include reveal-to('[data-scroll]') {
+      @include transition-delay(1, 0, 0.3s);
+    }
+  }
+  

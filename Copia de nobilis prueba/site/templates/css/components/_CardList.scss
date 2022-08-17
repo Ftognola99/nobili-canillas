@@ -1,0 +1,125 @@
+.CardList {
+    overflow: hidden;
+  
+    .swiper-container {
+      @include res-prop("margin-top", $grid-gutter-widths, -2);
+      @include media-breakpoint-down(xs) {
+        margin-top: 0;
+      }
+      overflow: visible;
+      @include media-breakpoint-up(sm) {
+        pointer-events: none;
+      }
+    }
+  
+    .swiper-wrapper {
+      @include media-breakpoint-up(sm) {
+        transform: none !important;
+        width: auto;
+        height: auto;
+        @include make-row();
+  
+      }
+    }
+  
+    .swiper-slide {
+      pointer-events: auto;
+      @include res-prop("margin-top", $grid-gutter-widths, 2);
+      height: auto;
+      display: flex;
+      width: 90%;
+      &:last-child {
+        margin-right: 0;
+      }
+      @include media-breakpoint-down(xs) {
+        margin-right: map_get($grid-container-paddings, xs);
+        margin-top: 0;
+        &:last-child:first-child {
+          width: 100%;
+        }
+      }
+      @include media-breakpoint-up(sm) {
+        @include make-col-ready();
+        @include make-col(6);
+        &.--full {
+          @include make-col(12);
+        }
+        &:first-child:last-child {
+          margin-left: auto;
+          margin-right: auto;
+        }
+      }
+    }
+  
+    &.is-slider {
+    }
+    &:not(.is-slider) {
+      // .swiper-wrapper {
+      //   width: auto;
+      // }
+      // .swiper-slide {
+      //   @include make-col-ready();
+      //   @include res-prop("margin-top", $grid-gutter-widths, 2);
+      //   @include media-breakpoint-up(sm) {
+      //     @include make-col(6);
+      //   }
+      //   &.CardList--full {
+      //     @include make-col(12);
+      //   }
+      // }
+    }
+  }
+  
+  .CardList-item {
+    align-items: flex-end;
+    display: flex;
+    min-height: 34vw;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    @include media-breakpoint-down(xs) {
+      min-height: 75vw;
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #000;
+      opacity: 0.25;
+    }
+  }
+  
+  .CardList-figure {
+    background-color: $color-placeholder;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+  
+  .CardList-image {
+    @include lazyloaded();
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: center/cover no-repeat;
+  }
+  
+  .CardList-imagePlaceholder {
+    visibility: hidden;
+  }
+  
+  .CardList-content {
+    @include reveal();
+    @include res-prop("margin", $grid-container-paddings);
+    position: relative;
+    z-index: 1;
+  }
+  
+  

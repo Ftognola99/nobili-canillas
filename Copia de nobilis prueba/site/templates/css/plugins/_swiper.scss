@@ -1,0 +1,43 @@
+.swiper-scrollbar {
+    background-color: rgba($color-background-black, 0.2);
+    cursor: pointer !important;
+    border-radius: 0;
+    &:before {
+      content: '';
+      position: absolute;
+      top: -5px;
+      left: 0;
+      right: 0;
+      bottom: -5px;
+      z-index: -1;
+    }
+    .color-inverted & {
+      background-color: rgba($color-background, 0.3);
+    }
+  }
+  
+  .swiper-scrollbar-drag {
+    background-color: $color-background-black;
+    border-radius: 0;
+    &:before {
+      content: '';
+      position: absolute;
+      top: -5px;
+      left: 0;
+      right: 0;
+      bottom: -5px;
+      z-index: -1;
+    }
+    .color-inverted & {
+      background-color: $color-background;
+    }
+  }
+  
+  .swiper-container-horizontal > .swiper-scrollbar {
+    left: 0;
+    right: 0;
+    width: auto;
+    height: 2px;
+    bottom: 1px;
+  }
+  

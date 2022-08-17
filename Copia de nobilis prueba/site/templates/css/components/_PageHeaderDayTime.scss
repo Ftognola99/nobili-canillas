@@ -1,0 +1,53 @@
+.PageHeaderDayTime {
+    background-color: var(--color-background);
+    position: relative;
+    overflow: hidden;
+    height: calc(var(--initial-vh) * 100);
+    color: $color-text-inverted;
+  }
+  
+  .PageHeaderDayTime-nav {
+    @include res-prop("right", $grid-container-paddings);
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  
+  .PageHeaderDayTime-media {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+  }
+  
+  .PageHeaderDayTime-navItem {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    padding: 0.25rem 0;
+    span {
+      display: block;
+      border-radius: 50%;
+      width: 4px;
+      height: 4px;
+      background-color: currentColor;
+      margin: 0.4rem;
+      &:not(.is-active) {
+        opacity: 0.4;
+      }
+    }
+  }
+  
+  .PageHeaderDayTime-image {
+    @include lazyloaded();
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: center/cover no-repeat;
+  }
+  

@@ -1,0 +1,63 @@
+// .CatalogueList {}
+
+.CatalogueList-mainCol {
+    @include content-spacer("margin-top", -1);
+    @include media-breakpoint-up(sm) {
+      @include make-col(10);
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+  
+  .CatalogueList-col {
+    @include reveal();
+    @include content-spacer("margin-top");
+    will-change: transform;
+    &:nth-child(2n+2) {
+      @include reveal-delay(1);
+    }
+    @include media-breakpoint-up(md) {
+      @include make-col(4);
+      &:nth-child(3n+2) {
+        @include reveal-delay(1);
+      }
+      &:nth-child(3n+3) {
+       @include reveal-delay(2);
+      }
+    }
+    @include media-breakpoint-up(xl) {
+      @include make-col(3);
+      &:nth-child(4n+2) {
+        @include reveal-delay(1);
+      }
+      &:nth-child(4n+3) {
+        @include reveal-delay(2);
+      }
+      &:nth-child(4n+4) {
+        @include reveal-delay(3);
+      }
+    }
+  }
+  
+  .CatalogueList-link {
+    display: block;
+    text-decoration: none !important;
+  }
+  
+  @include spotlight-hover(".CatalogueList", ".CatalogueList-link");
+  
+  .CatalogueList-figure {
+    background-color: $color-placeholder;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.25);
+  }
+  
+  .CatalogueList-image {
+    @include lazyloaded();
+  }
+  
+  .CatalogueList-title {
+    font-size: 1rem;
+    text-align: center;
+  }
+  

@@ -1,0 +1,61 @@
+.ImageGrid {
+}
+
+.ImageGrid-mainCol {
+  margin: auto;
+
+  @include media-breakpoint-up(lg) {
+    @include make-col(10);
+  }
+}
+
+.ImageGrid-items {
+  justify-content: center;
+}
+
+.ImageGrid-item {
+  @include res-prop("margin-bottom", $grid-gutter-widths);
+  flex-basis: auto;
+  flex-shrink: 1;
+  width: auto;
+}
+
+.ImageGrid-figure {
+  position: relative;
+  background-color: $color-placeholder;
+}
+
+.ImageGrid-image {
+  @include lazyloaded();
+  height: 70vw;
+  width: auto;
+  max-width: 100%;
+  @include media-breakpoint-up(sm) {
+    height: 50vh;
+  }
+}
+
+.ImageGrid-download {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 1rem;
+  right: 1rem;
+  background-color: rgba(255, 255, 255, 0.25);
+  width: 2rem;
+  height: 2rem;
+  line-height: 0;
+  border-radius: 50%;
+
+  .fancybox-caption & {
+    position: relative;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+  }
+
+  svg {
+    stroke: #fff;
+  }
+}

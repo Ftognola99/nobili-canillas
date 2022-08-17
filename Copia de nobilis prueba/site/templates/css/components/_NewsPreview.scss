@@ -1,0 +1,55 @@
+.NewsPreview {
+    a {
+      text-decoration: none;
+    }
+  }
+  
+  .NewsPreview-figure {
+    position: relative;
+    overflow: hidden;
+    max-width: 100%;
+    padding-bottom: 3/4 * 100%;
+    margin-bottom: 1rem;
+    background-color: $color-placeholder;
+  }
+  
+  .NewsPreview-image {
+    @include lazyloaded();
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: center/cover no-repeat;
+  }
+  
+  .NewsPreview-meta {
+    @include text-xsmall();
+    opacity: 0.3;
+    text-transform: uppercase;
+    margin-bottom: 0.25rem;
+    display: flex;
+    font-weight: 500;
+  }
+  
+  .NewsPreview-category + .NewsPreview-date {
+    &:before {
+      padding: 0 0.25em;
+      content: '/';
+    }
+  }
+  
+  .NewsPreview-title {
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+    line-height: 1.5;
+    span {
+      @include underlineLink(#{0% 100%});
+    }
+  }
+  
+  .NewsPreview-abstract {
+    @include text-small();
+    margin: 0;
+  }
+  

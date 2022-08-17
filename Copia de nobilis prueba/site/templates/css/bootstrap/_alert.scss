@@ -1,0 +1,39 @@
+.alert {
+    color: #fff;
+    font-weight: 400;
+    font-family: $font-family-sans-serif;
+    @include text-small();
+    background: $color-background;
+    // redeclare with important because P are overwritten in .Prose
+    margin-bottom: $alert-margin-bottom !important;
+  
+    &.alert-error,
+    &.alert-danger {
+      background: $color-error;
+    }
+  
+    &.alert-warning {
+      color: $color-text;
+      background: $color-warning;
+    }
+  
+    &.alert-success {
+      background: $color-success;
+    }
+  
+    // because mailchimp form uses label tags
+    label {
+      margin: 0;
+      color: inherit;
+    }
+  }
+  
+  .alert-error + .alert-error,
+  .alert-danger + .alert-danger,
+  .alert-success + .alert-success,
+  .alert-warning + .alert-warning {
+    margin-top: -$alert-margin-bottom * 2;
+  }
+  
+  
+  

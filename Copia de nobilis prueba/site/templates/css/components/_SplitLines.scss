@@ -1,0 +1,35 @@
+.SplitLines {
+    [data-scroll-container] & {
+      overflow: hidden;
+    }
+  }
+  
+  .SplitLines-line {
+    [data-scroll-container] & {
+      overflow: hidden;
+      transition-delay: 0s;
+      *:not(.SplitLines-word) {
+        transition-delay: inherit;
+      }
+    }
+    // html.is-ready [data-scroll-container] .SplitLines:not(.--noDelay).is-inview &,
+    // html.is-ready [data-scroll-container] .is-inview .swiper-slide-active .SplitLines &,
+    // html.is-ready [data-scroll-container] .is-inview .swiper-slide-duplicate-active .SplitLines & {
+    //   @include transition-delay-nthchild(10, 0s, 0.2s);
+    // }
+  }
+  
+  .SplitLines-word {
+    [data-scroll-container] & {
+      will-change: transform;
+      transform: translateY(110%);
+      transition: transform 0.8s;
+      transition-delay: inherit;
+    }
+    html.is-ready [data-scroll-container] .SplitLines.is-inview &,
+    html.is-ready [data-scroll-container] .is-initialized .swiper-slide-active .SplitLines &,
+    html.is-ready [data-scroll-container] .is-initialized .swiper-slide-duplicate-active .SplitLines & {
+      transform: translateY(0);
+    }
+  }
+  

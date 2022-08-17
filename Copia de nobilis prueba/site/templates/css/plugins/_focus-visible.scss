@@ -1,0 +1,25 @@
+.js-focus-visible :focus:not(.focus-visible),
+.js-focus-visible button:focus:not(.focus-visible) {
+  outline: none;
+}
+
+.focus-visible,
+.focus-visible + .custom-control-label:after {
+  outline: 2px solid rgba(127, 127, 127, 0.3) !important;
+  outline-offset: 4px !important;
+  .show-menu .SiteHeader-overlay & {
+    // outline-color: #fff !important;
+  }
+}
+
+input[type="text"],
+input[type="email"],
+input[type="search"],
+input[type="password"],
+textarea,
+select,
+.bootstrap-select * {
+  &.focus-visible {
+    outline: none !important;
+  }
+}

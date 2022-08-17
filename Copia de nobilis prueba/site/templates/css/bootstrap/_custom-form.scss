@@ -1,0 +1,28 @@
+.custom-control-label {
+    &::before {
+      background-color: transparent;
+      border: 1px solid color("warm-gray");
+    }
+    // font-size: calc(1rem - 2px);
+    &:after {
+      // transform: scale(0.5);
+      @include media-breakpoint-up(sm) {
+        // top: 5px;
+        // left: -27px;
+        // background-size: 10px 10px;
+        // background-position: center;
+        // .InputfieldCheckboxesStacked & {
+        //   top: 4px;
+        // }
+      }
+    }
+  }
+  
+  .custom-control-input.focus-visible:focus~.custom-control-label::before {
+    // @extend .focus-visible;
+  }
+  
+  .custom-control-input:checked ~ .custom-control-label::after {
+    // background-color: $color-accent;
+  }
+  

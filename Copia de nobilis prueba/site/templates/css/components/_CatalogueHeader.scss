@@ -1,0 +1,41 @@
+.CatalogueHeader {
+    @include header-spacer();
+    @include content-spacer("margin-bottom");
+  }
+  
+  .CatalogueHeader-title {
+    @include reveal();
+    @include content-spacer("margin-bottom", 0.75);
+    text-align: center;
+  }
+  
+  .CatalogueHeader-nav {
+    @include reveal();
+    margin: auto;
+    max-width: 100%;
+    @include media-breakpoint-up(sm) {
+      max-width: 15rem;
+    }
+  }
+  
+  .CatalogueHeader-list {
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+    list-style: none;
+  }
+  
+  .CatalogueHeader-link {
+    text-transform: uppercase;
+    opacity: 0.3;
+    transition: opacity 0.3s;
+    font-weight: 500;
+    &.is-active {
+      opacity: 1 !important;
+    }
+    &:hover {
+      text-decoration: none;
+      opacity: 0.6;
+    }
+  }
+  

@@ -1,0 +1,10 @@
+.SearchResults {
+    min-height: 50vh;
+  }
+  
+  .SearchResults-total {
+    font-weight: 700;
+    margin-bottom: 2rem;
+    @include reveal();
+  }
+  

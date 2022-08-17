@@ -1,0 +1,141 @@
+.Slides {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--color-background);
+  }
+  
+  .Slides-item {
+    @include section-spacer("padding-bottom");
+    display: flex;
+    flex-direction: column;
+    background-color: inherit;
+    @include media-breakpoint-up(sm) {
+      flex-direction: row;
+      align-items: center;
+      padding-bottom: 0;
+      .--reverse & {
+        flex-direction: row-reverse;
+      }
+    }
+    @include media-breakpoint-up(md) {
+      padding-bottom: 0;
+      height: 100vh;
+    }
+  }
+  
+  .Slides-figure,
+  .Slides-text {
+    // @include make-col(12);
+    // height: 100vh;
+    // width: 50vw;
+  }
+  
+  .Slides-figure {
+    @include res-prop("margin-bottom", $grid-container-paddings);
+    position: relative;
+    padding-bottom: 100%;
+    padding-bottom: 4/3 * 100%;
+    background-color: $color-placeholder;
+    overflow: hidden;
+    @include media-breakpoint-up(sm) {
+      flex: 0 0 50%;
+      padding-bottom: 4/3 * 50%;
+      margin-bottom: 0;
+    }
+    @include media-breakpoint-up(md) {
+      padding-bottom: 0;
+      height: 100vh;
+    }
+  }
+  
+  .Slides-figureWrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    @include media-breakpoint-down(sm) {
+      // disable parallax
+      transform: none !important;
+    }
+  }
+  
+  .Slides-image {
+    @include lazyloaded();
+    top: 0;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: center/cover no-repeat;
+    @include media-breakpoint-down(sm) {
+      top: 0 !important;
+    }
+    .has-scroll-smooth & {
+      @include res-prop("top", $site-header-heights);
+    }
+  }
+  
+  .Slides-text {
+    display: flex;
+    align-items: center;
+    @include media-breakpoint-up(sm) {
+      flex: 0 0 50%;
+      margin-left: auto;
+      padding-right: map_get($grid-container-paddings, sm) * 0.5;
+    }
+    @include media-breakpoint-up(md) {
+      padding-right: map_get($grid-container-paddings, md) * 0.5;
+    }
+  }
+  
+  .Slides-body {
+    margin-left: map_get($grid-container-paddings, xs);
+    margin-right: map_get($grid-container-paddings, xs);
+    @include media-breakpoint-up(sm) {
+      margin: auto;
+      width: 76%;
+    }
+    @include media-breakpoint-up(md) {
+      width: 60%;
+    }
+  }
+  
+  .Slides-textWrapper {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100vh;
+    display: none;
+    pointer-events: none;
+    .Slides-text {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+    .Slides-body {
+      opacity: 0;
+      will-change: transform;
+      transition: transform 0.1s 0.3s, opacity 0.3s;
+      transform: translateY(1rem);
+    }
+    .Slides-text.is-active .Slides-body {
+      opacity: 1;
+      transform: translateY(0);
+      transition: transform 0.8s cubic-bezier("easeOutCubic"), opacity 0.8s;
+      pointer-events: auto;
+    }
+  }
+  
+  .Slides-textContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+  

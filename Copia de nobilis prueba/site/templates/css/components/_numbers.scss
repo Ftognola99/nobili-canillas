@@ -1,0 +1,113 @@
+.Numbers {
+    overflow: hidden;
+    .swiper-container {
+      overflow: visible;
+    }
+    .swiper-wrapper {
+      @include media-breakpoint-up(sm) {
+        @include make-row();
+        width: auto;
+        justify-content: center;
+        transform: none !important;
+      }
+    }
+    .swiper-slide {
+      @include media-breakpoint-up(sm) {
+        @include make-col-ready();
+        @include make-col(6);
+        @include content-spacer(("margin-top"));
+        @include media-breakpoint-up(xs) {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          &:nth-child(-n+2) {
+            margin: 0;
+          }
+        }
+        @include media-breakpoint-up(md) {
+          @include make-col(3);
+          &:nth-child(-n+4) {
+            margin: 0;
+          }
+        }
+      }
+      @include media-breakpoint-down(xs) {
+        @include res-prop("margin-right", $grid-container-paddings);
+        width: 10rem;
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+  
+  .Numbers-title {
+    @include reveal("[data-scroll]");
+    @include content-spacer(("margin-bottom"));
+    text-align: center;
+    text-transform: uppercase;
+    @include media-breakpoint-down(xs) {
+      text-align: left;
+    }
+  }
+  
+  .Numbers-mainRow {
+    @include media-breakpoint-up(sm) {
+      @include make-row();
+    }
+  }
+  
+  .Numbers-mainCol {
+    @include media-breakpoint-up(sm) {
+      @include make-col-ready();
+      @include make-col(12);
+      margin: auto;
+      @include media-breakpoint-up(lg) {
+        @include make-col(10);
+      }
+    }
+  }
+  
+  .Numbers-item {
+    @include reveal();
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .Numbers-number {
+    position: relative;
+    z-index: 2;
+    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10rem;
+    height: 10rem;
+    margin-bottom: 2rem;
+    font-size: 1.15rem;
+    color: var(--color-text-inverted);
+    &:before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      transform-origin: 50% 50%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      height: 100%;
+      width: 100%;
+      background-color: var(--color-text);
+      // opacity: 0.1;
+      border-radius: 50%;
+    }
+  }
+  
+  .Numbers-text {
+    text-align: center;
+    max-width: 15em;
+    @include media-breakpoint-down(xs) {
+      @include text-small();
+    }
+  }
+  

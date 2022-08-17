@@ -1,0 +1,90 @@
+.PageHeaderLanding {
+    background-color: var(--color-background);
+    position: relative;
+    overflow: hidden;
+    &.--inverted {
+      color: #fff;
+    }
+  }
+  
+  
+  .PageHeaderLanding-media {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+  }
+  
+  .PageHeaderLanding-image,
+  .PageHeaderLanding-video {
+    @include lazyloaded();
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+  
+  .PageHeaderLanding-image {
+    background: center/cover no-repeat;
+  }
+  
+  .PageHeaderLanding-video {
+    video {
+      position: absolute;
+    }
+  }
+  
+  .PageHeaderLanding-content {
+    @include header-spacer();
+    // @include header-spacer("padding-bottom");
+    @include section-spacer("padding-bottom");
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    min-height: calc(var(--initial-vh) * 100);
+    .PageHeaderLanding.--textBottomLeft & {
+      justify-content: flex-end;
+      padding-bottom: 0;
+      text-align: left;
+      @include media-breakpoint-up(sm) {
+        @include make-col(8);
+        @include make-col-offset(1);
+      }
+    }
+  }
+  
+  .PageHeaderLanding-title {
+  }
+  
+  
+  .PageHeaderLanding-title,
+  .PageHeaderLanding-subtitle {
+    max-width: 18em;
+    margin-bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+    .PageHeaderLanding.--textBottomLeft & {
+      margin-left: 0;
+    }
+  }
+  
+  .PageHeaderLanding-heading {
+    @include reveal();
+    @include res-prop("margin-bottom", $grid-gutter-widths, 1.5);
+    .PageHeaderLanding:not(.--textBottomLeft) & {
+      margin-bottom: 0;
+    }
+  }
+  
+  .PageHeaderLanding-subtitle {
+    padding-top: 0.5rem;
+    display: inline-block;
+  }
+  
+  
+  

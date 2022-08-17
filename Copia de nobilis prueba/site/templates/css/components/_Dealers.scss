@@ -1,0 +1,140 @@
+.Dealers {
+    min-height: 70vh;
+    [data-dealers-result] {
+      height: 0;
+      overflow: hidden;
+    }
+    &.has-search [data-dealers-result] {
+      @include section-spacer("padding-bottom");
+      height: auto;
+      // overflow: hidden;
+    }
+  }
+  
+  .Dealers-notFound {
+    @include text-small();
+    margin-top: 1rem;
+    font-weight: 500;
+    display: none;
+    .Dealers.not-found & {
+      display: block;
+    }
+  }
+  
+  .Dealers-mapWrapper {
+    padding-bottom: 45%;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 6rem;
+    @include media-breakpoint-down(xs) {
+      display: none;
+    }
+  }
+  
+  .Dealers-map {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .Dealers-listCol {
+    @include media-breakpoint-up(md) {
+      @include make-col(10);
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+  
+  .Dealers-card {
+    @include make-col-ready();
+    @include make-col(12);
+    @include media-breakpoint-up(sm) {
+      @include make-col(6);
+    }
+    @include media-breakpoint-up(md) {
+      @include make-col(4);
+    }
+  }
+  
+  
+  
+  .Dealers-card-content {
+    @include text-small();
+    border-top: 2px solid currentColor;
+    padding: 2rem 0 3rem;
+    [data-title] {
+      text-transform: uppercase;
+      font-weight: 500;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+    [data-url] {
+      text-decoration: underline;
+    }
+    [data-distance] {
+      padding-top: 1rem;
+      color: rgba(0,0,0,.5);
+    }
+  }
+  
+  .Dealers-infowindow {
+    @include text-xsmall();
+    font-family: $font-family-base;
+    font-weight: 400;
+    [data-title] {
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    [data-url] {
+      text-decoration: underline;
+    }
+    [data-distance] {
+      padding-top: 0.5rem;
+      color: rgba(0,0,0,.5);
+    }
+  
+  }
+  
+  .Dealers-geolocate {
+    @include text-small();
+    display: inline-flex;
+    margin-top: 2rem;
+    align-items: center;
+    cursor: pointer;
+    &:hover {
+      text-decoration: underline;
+    }
+    &.is-loading {
+      pointer-events: none;
+    }
+  }
+  
+  .Dealers-geolocate-icon {
+    padding-right: 0.3rem;
+    position: relative;
+    top: -0.1rem;
+    .Dealers-geolocate.is-loading & {
+      .Icon {
+        opacity: 0;
+      }
+      &:after {
+        content: '';
+        position: absolute;
+        border: 2px solid currentColor;
+        border-bottom-color: #fff;
+        border-radius: 50%;
+        width: 1rem;
+        height: 1rem;
+        top: 50%;
+        left: 0;
+        margin: -0.5rem 0 0;
+        transform-origin: 50% 50%;
+        opacity: 0.9;
+        animation: 0.5s linear infinite fancybox-rotate;
+      }
+    }
+  }
+  

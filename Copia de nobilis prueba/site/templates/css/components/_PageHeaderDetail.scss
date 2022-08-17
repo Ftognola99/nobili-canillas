@@ -1,0 +1,134 @@
+.PageHeaderDetail {
+    background-color: var(--color-background);
+    position: relative;
+    overflow: hidden;
+    &.--inverted {
+      color: $color-text-inverted;
+    }
+  }
+  
+  
+  .PageHeaderDetail-media {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+  }
+  
+  .PageHeaderDetail-image,
+  .PageHeaderDetail-video {
+    @include lazyloaded();
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+  
+  .PageHeaderDetail-image {
+    background: center/cover no-repeat;
+  }
+  
+  .PageHeaderDetail-video {
+    video {
+      position: absolute;
+    }
+  }
+  
+  .PageHeaderDetail-main {
+    @include media-breakpoint-up(sm) {
+      @include make-col(10);
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+  
+  .PageHeaderDetail-content {
+    @include res-prop(("padding-top", "padding-bottom"), $grid-gutter-widths, 1.5);
+    min-height: calc(var(--initial-vh) * 100);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    &:before {
+      content: '';
+      display: block;
+      @include res-prop("height", $site-header-heights);
+    }
+    @include media-breakpoint-up(sm) {
+      @include make-col(8, 10);
+    }
+    @include media-breakpoint-up(md) {
+      @include make-col(7,10);
+    }
+    @include media-breakpoint-up(lg) {
+      @include make-col(6,10);
+    }
+    @include media-breakpoint-up(xl) {
+      @include make-col(5,10);
+    }
+  
+    .--vAlignCenter & {
+      justify-content: center;
+    }
+  
+    .--vAlignTop & {
+      justify-content: flex-start;
+    }
+  
+    .--hAlignCenter & {
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  
+    .--hAlignRight & {
+      text-align: right;
+      margin-left: auto;
+    }
+  }
+  
+  .PageHeaderDetail-contentWrapper {
+    @include reveal();
+    margin: 10rem 0 0;
+    .--vAlignTop & {
+      margin: 0 0 10rem;
+    }
+    .--vAlignCenter & {
+      margin: 5rem 0;
+    }
+  }
+  
+  .PageHeaderDetail-parentLink {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    @include media-breakpoint-up(sm) {
+      display: none;
+    }
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  
+  .PageHeaderDetail-title,
+  .PageHeaderDetail-subtitle {
+    // @include reveal("[data-scroll]");
+  }
+  
+  .PageHeaderDetail-title {
+    @include ms-respond(font-size, 24.3); // 34px
+    margin: 0;
+  }
+  
+  .PageHeaderDetail-subtitle {
+    opacity: 0.7;
+    margin: 0.25rem 0 0;
+    font-weight: 300;
+    // @include reveal-to('[data-scroll]') {
+    //   @include transition-delay(1, 0, 0.5s);
+    // }
+  }
+  
